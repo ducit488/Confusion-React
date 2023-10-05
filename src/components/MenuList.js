@@ -10,7 +10,7 @@ function MenuList({ dishes, setSelectedDish }) {
       >
         <CardImg width="100%" src={dish.image} alt={dish.name} />
         <CardImgOverlay>
-          <CardTitle>{dish.name}</CardTitle>
+          <CardTitle tag="h5">{dish.name}</CardTitle>
         </CardImgOverlay>
       </Card>
     </div>

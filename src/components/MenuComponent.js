@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
 import MenuList from "./MenuList";
-import MenuItem from "./MenuItem";
+
+import DishdetailComponent from "./DishdetailComponent";
 
 function MenuComponent({ dishes }) {
   const [selectedDish, setSelectedDish] = useState(null);
@@ -11,11 +12,7 @@ function MenuComponent({ dishes }) {
       <div className="row">
         <MenuList dishes={dishes} setSelectedDish={setSelectedDish} />
       </div>
-      <div className="row">
-        <div className="col-12 col-md-5 m-1">
-          <MenuItem dish={selectedDish} />
-        </div>
-      </div>
+      <DishdetailComponent dish={selectedDish} />
     </div>
   );
 }

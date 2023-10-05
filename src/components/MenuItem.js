@@ -7,7 +7,7 @@ function MenuItem({ dish }) {
     <Card>
       <CardImg top src={dish.image} alt={dish.name} />
       <CardBody>
-        <CardTitle>{dish.name}</CardTitle>
+        <CardTitle tag="h5">{dish.name}</CardTitle>
         <CardText>{dish.description}</CardText>
       </CardBody>
     </Card>
