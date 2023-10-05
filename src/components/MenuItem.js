@@ -1,14 +1,10 @@
 import { CardTitle, CardImg, Card, CardImgOverlay } from "reactstrap";
 
-function MenuItem({ dish, onClick }) {
+function MenuItem({ dish }) {
   if (dish == null) return <div></div>;
 
   return (
-    <Card
-      onClick={() => {
-        onClick(dish.id);
-      }}
-    >
+    <Card>
       <CardImg width="100%" src={dish.image} alt={dish.name} />
       <CardImgOverlay>
         <CardTitle tag="h5">{dish.name}</CardTitle>
