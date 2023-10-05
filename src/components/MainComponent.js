@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import { Navbar, NavbarBrand } from "reactstrap";
 
 import MenuComponent from "./MenuComponent";

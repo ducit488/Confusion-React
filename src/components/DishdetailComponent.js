@@ -9,27 +9,33 @@ function DishdetailComponent({ dish }) {
   };
 
   return (
-    <div className="row">
-      <div className="col-12 col-md-5 m-1">
-        <MenuItem dish={dish} />
-      </div>
-      <div className="col-12 col-md-5 m-1">
-        <h4>Comments</h4>
-        {dish != null ? (
-          <ul className="list-unstyled">
-            {dish.comments.map((item) => (
-              <li key={item.id}>
-                <p>{item.comment}</p>
-                <p>
-                  -- {item.author},{" "}
-                  {new Date(item.date).toLocaleDateString("en-US", options)}
-                </p>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <div></div>
-        )}
+    <div className="container">
+      <div className="row">
+        <div className="col-12 col-md-5 m-1">
+          <MenuItem dish={dish} />
+        </div>
+        <div className="col-12 col-md-5 m-1">
+          <h4>Comments</h4>
+          {dish != null ? (
+            <ul className="list-unstyled">
+              {dish.comments.map((item) => (
+                <li key={item.id}>
+                  <p>{item.comment}</p>
+                  <p>
+                    -- {item.author},{" "}
+                    {new Intl.DateTimeFormat("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "2-digit",
+                    }).format(new Date(Date.parse(item.date)))}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div></div>
+          )}
+        </div>
       </div>
     </div>
   );
