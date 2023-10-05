@@ -8,6 +8,8 @@ import {
   Label,
   Input,
   Col,
+  Row,
+  FormFeedback,
 } from "reactstrap";
 
 import { Link } from "react-router-dom";
@@ -21,7 +23,58 @@ function ContactComponent() {
     agree: false,
     contactType: "Tel.",
     message: "",
+    touched: {
+      firstname: false,
+      lastname: false,
+      telnum: false,
+      email: false,
+    },
   });
+
+  const handleBlur = (field) => (evt) => {
+    setState((current) => ({
+      ...current,
+      touched: { ...current.touched, [field]: true },
+    }));
+  };
+
+  const validate = (firstname, lastname, telnum, email) => {
+    const errors = {
+      firstname: "",
+      lastname: "",
+      telnum: "",
+      email: "",
+    };
+
+    if (state.touched.firstname && firstname.length < 3)
+      errors.firstname = "First Name should be >= 3 characters";
+    else if (state.touched.firstname && firstname.length > 10)
+      errors.firstname = "First Name should be <= 10 characters";
+
+    if (state.touched.lastname && lastname.length < 3)
+      errors.lastname = "Last Name should be >= 3 characters";
+    else if (state.touched.lastname && lastname.length > 10)
+      errors.lastname = "Last Name should be <= 10 characters";
+
+    const reg = /^\d+$/;
+    if (state.touched.telnum && !reg.test(telnum))
+      errors.telnum = "Tel. Number should contain only numbers";
+
+    if (
+      state.touched.email &&
+      email.split("").filter((x) => x === "@").length !== 1
+    )
+      errors.email = "Email should contain a @";
+
+    return errors;
+  };
+
+  const errors = validate(
+    state.firstname,
+    state.lastname,
+    state.telnum,
+    state.email
+  );
 
   const handleInputChange = (event) => {
     const target = event.target;
@@ -117,8 +170,12 @@ function ContactComponent() {
                   name="firstname"
                   placeholder="First Name"
                   value={state.firstname}
+                  valid={errors.firstname === ""}
+                  invalid={errors.firstname !== ""}
+                  onBlur={handleBlur("firstname")}
                   onChange={handleInputChange}
                 />
+                <FormFeedback>{errors.firstname}</FormFeedback>
               </Col>
             </FormGroup>
             <FormGroup row>
@@ -132,8 +189,12 @@ function ContactComponent() {
                   name="lastname"
                   placeholder="Last Name"
                   value={state.lastname}
+                  valid={errors.lastname === ""}
+                  invalid={errors.lastname !== ""}
+                  onBlur={handleBlur("lastname")}
                   onChange={handleInputChange}
                 />
+                <FormFeedback>{errors.lastname}</FormFeedback>
               </Col>
             </FormGroup>
             <FormGroup row>
@@ -147,8 +208,12 @@ function ContactComponent() {
                   name="telnum"
                   placeholder="Tel. number"
                   value={state.telnum}
+                  valid={errors.telnum === ""}
+                  invalid={errors.telnum !== ""}
+                  onBlur={handleBlur("telnum")}
                   onChange={handleInputChange}
                 />
+                <FormFeedback>{errors.telnum}</FormFeedback>
               </Col>
             </FormGroup>
             <FormGroup row>
@@ -162,8 +227,12 @@ function ContactComponent() {
                   name="email"
                   placeholder="Email"
                   value={state.email}
+                  valid={errors.email === ""}
+                  invalid={errors.email !== ""}
+                  onBlur={handleBlur("email")}
                   onChange={handleInputChange}
                 />
+                <FormFeedback>{errors.email}</FormFeedback>
               </Col>
             </FormGroup>
             <FormGroup row>
