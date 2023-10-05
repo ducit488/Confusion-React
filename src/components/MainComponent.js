@@ -10,6 +10,7 @@ import { PROMOTIONS as promotions } from "../shared/promotions";
 import { LEADERS as leaders } from "../shared/leaders";
 
 import HomeComponent from "./HomeComponent";
+import DishdetailComponent from "./DishdetailComponent";
 
 function MainComponent() {
   return (
@@ -30,6 +31,22 @@ function MainComponent() {
         component={() => <MenuComponent dishes={dishes} />}
       />
       <Route exact path="/contactus" component={ContactComponent} />
+      <Route
+        exact
+        path="/menu/:dishId"
+        render={({ match }) => (
+          <DishdetailComponent
+            dish={
+              dishes.filter(
+                (dish) => dish.id === parseInt(match.params.dishId, 10)
+              )[0]
+            }
+            comments={comments.filter(
+              (comment) => comment.dishId === parseInt(match.params.dishId, 10)
+            )}
+          />
+        )}
+      />
       <Redirect to="/home" />
     </Switch>
   );
