@@ -1,15 +1,18 @@
-import { CardTitle, CardImg, Card, CardBody, CardText } from "reactstrap";
+import { CardTitle, CardImg, Card, CardImgOverlay } from "reactstrap";
 
-function MenuItem({ dish }) {
+function MenuItem({ dish, onClick }) {
   if (dish == null) return <div></div>;
 
   return (
-    <Card>
-      <CardImg top src={dish.image} alt={dish.name} />
-      <CardBody>
+    <Card
+      onClick={() => {
+        onClick(dish.id);
+      }}
+    >
+      <CardImg width="100%" src={dish.image} alt={dish.name} />
+      <CardImgOverlay>
         <CardTitle tag="h5">{dish.name}</CardTitle>
-        <CardText>{dish.description}</CardText>
-      </CardBody>
+      </CardImgOverlay>
     </Card>
   );
 }
