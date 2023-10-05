@@ -1,0 +1,17 @@
+import { CardTitle, CardImg, Card, CardBody, CardText } from "reactstrap";
+
+function MenuItem({ dish }) {
+  if (dish == null) return <div></div>;
+
+  return (
+    <Card>
+      <CardImg top src={dish.image} alt={dish.name} />
+      <CardBody>
+        <CardTitle>{dish.name}</CardTitle>
+        <CardText>{dish.description}</CardText>
+      </CardBody>
+    </Card>
+  );
+}
+
+export default MenuItem;
