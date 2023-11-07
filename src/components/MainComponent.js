@@ -9,24 +9,16 @@ import AboutComponent from "./AboutComponent";
 import HeaderComponent from "./HeaderComponent";
 import FooterComponent from "./FooterComponent";
 
-import { DISHES as dishes } from "../shared/dishes";
-import { COMMENTS as comments } from "../shared/comments";
-import { PROMOTIONS as promotions } from "../shared/promotions";
-import { LEADERS as leaders } from "../shared/leaders";
-
 import HomeComponent from "./HomeComponent";
 import DishdetailComponent from "./DishdetailComponent";
-
-const mapStateToProps = (state) => {
-  return {
-    dishes: state.dishes,
-    comments: state.comments,
-    promotions: state.promotions,
-    leaders: state.leaders,
-  };
-};
+import { useSelector } from "react-redux";
 
 function MainComponent() {
+  const { dishes, comments, promotions, leaders, isLoading, error } =
+    useSelector((state) => {
+      return state.mixedDatas;
+    });
+
   return (
     <div>
       <HeaderComponent />
