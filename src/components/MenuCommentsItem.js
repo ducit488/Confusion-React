@@ -1,5 +1,17 @@
 import { Fragment } from "react";
 import CommentForm from "./CommentForm";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Col,
+  Row,
+  FormFeedback,
+} from "reactstrap";
 
 function MenuCommentsItem({ comments, dishId }) {
   return (
@@ -19,7 +31,7 @@ function MenuCommentsItem({ comments, dishId }) {
           </li>
         ))}
       </ul>
-      <h4 className="mt-5 mb-4">Add comment</h4>
+
       <CommentForm dishId={dishId} />
     </Fragment>
   );
