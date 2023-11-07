@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 function DishdetailComponent({ dish, comments }) {
   if (dish == null) return <div></div>;
 
+  console.log(dish);
+
   return (
     <div className="container">
       <div className="row">
@@ -27,7 +29,7 @@ function DishdetailComponent({ dish, comments }) {
         </div>
         <div className="col-12 col-md-5 m-1">
           <h4>Comments</h4>
-          <MenuCommentsItem comments={comments} />
+          <MenuCommentsItem comments={comments} dishId={dish.id} />
         </div>
       </div>
     </div>

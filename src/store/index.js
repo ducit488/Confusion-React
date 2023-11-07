@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { mixedDataReducer } from "./slices/mixedDataSlice";
+import { mixedDataReducer, addComment } from "./slices/mixedDataSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,3 +12,4 @@ const store = configureStore({
 });
 
 export { store };
+export { addComment };

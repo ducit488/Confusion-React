@@ -27,5 +27,5 @@ const mixedDataSlice = createSlice({
   },
 });
 
-export const { name } = mixedDataSlice.actions;
+export const { addComment } = mixedDataSlice.actions;
 export const mixedDataReducer = mixedDataSlice.reducer;
