@@ -15,8 +15,17 @@ const mixedDataSlice = createSlice({
     isLoading: false,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    addComment(state, action) {
+      const payload = {
+        ...action.payload,
+        id: state.comments.length,
+        date: new Date().toISOString(),
+      };
+      state.comments.push(payload);
+    },
+  },
 });
 
-export const {} = mixedDataSlice.actions;
+export const { name } = mixedDataSlice.actions;
 export const mixedDataReducer = mixedDataSlice.reducer;
