@@ -21,7 +21,7 @@ import PenIcon from "../icons/PenIcon";
 
 import { addComment } from "../store";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 
 function CommentForm({ dishId }) {
   const [modal, setModal] = useState(false);
@@ -42,7 +42,7 @@ function CommentForm({ dishId }) {
   };
 
   return (
-    <>
+    <Fragment>
       <Button
         outline
         className="d-flex align-items-center justify-content-between"
@@ -144,7 +144,7 @@ function CommentForm({ dishId }) {
           </LocalForm>
         </ModalBody>
       </Modal>
-    </>
+    </Fragment>
   );
 }
 

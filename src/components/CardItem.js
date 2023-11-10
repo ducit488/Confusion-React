@@ -7,7 +7,17 @@ import {
   CardSubtitle,
 } from "reactstrap";
 
-function CardItem({ item }) {
+import LoadingComponent from "./LoadingComponent";
+
+function CardItem({ item, dishesLoading, dishesError }) {
+  if (dishesLoading || item == null) {
+    return <LoadingComponent />;
+  }
+
+  if (dishesError) {
+    return <h4>Error fetching data...</h4>;
+  }
+
   return (
     <Card>
       <CardImg src={item.image} alt={item.name} />

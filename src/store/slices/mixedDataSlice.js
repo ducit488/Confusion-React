@@ -24,6 +24,9 @@ const mixedDataSlice = createSlice({
       };
       state.comments.push(payload);
     },
+    addDish(state, action) {
+      state.dishes.push(action.payload);
+    },
   },
 });
 

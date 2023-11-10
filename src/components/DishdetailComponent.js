@@ -1,13 +1,30 @@
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import MenuCommentsItem from "./MenuCommentsItem";
 import MenuDetailedItem from "./MenuDetailedItem";
+import LoadingComponent from "./LoadingComponent";
 
 import { Link } from "react-router-dom";
 
-function DishdetailComponent({ dish, comments }) {
-  if (dish == null) return <div></div>;
+function DishdetailComponent({ dish, comments, dishesLoading, dishesError }) {
+  if (dishesLoading || dish == null) {
+    return (
+      <div className="container">
+        <div className="row">
+          <LoadingComponent />
+        </div>
+      </div>
+    );
+  }
 
-  console.log(dish);
+  if (dishesError) {
+    return (
+      <div className="container">
+        <div className="row">
+          <h4>Error fetching data...</h4>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container">

@@ -2,10 +2,16 @@ import React from "react";
 
 import MenuList from "./MenuList";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
-
 import { Link } from "react-router-dom";
+import LoadingComponent from "./LoadingComponent";
 
-function MenuComponent({ dishes }) {
+function MenuComponent({ dishes, dishesLoading, dishesError }) {
+  if (dishesLoading || dishes == null) {
+    return <LoadingComponent />;
+  }
+  if (dishesError) {
+    return <h4>Error fetching data...</h4>;
+  }
   return (
     <div className="container">
       <div className="row">
