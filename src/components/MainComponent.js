@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
 import { fetchDishes } from "../store";
+import { actions } from "react-redux-form";
 
 function MainComponent() {
   const { dishes, comments, promotions, leaders } = useSelector((state) => {
@@ -30,6 +31,11 @@ function MainComponent() {
   const { dishesLoading, dishesData, dishesError } = useSelector((state) => {
     return state.dishes;
   });
+
+  const resetFeedbackForm = () => {
+    console.log(actions.reset("feedback"));
+    dispatch(actions.reset("feedback"));
+  };
 
   return (
     <div>
@@ -84,7 +90,13 @@ function MainComponent() {
             )}
           />
 
-          <Route exact path="/contactus" component={ContactComponent} />
+          <Route
+            exact
+            path="/contactus"
+            component={() => (
+              <ContactComponent resetFeedbackForm={resetFeedbackForm} />
+            )}
+          />
           <Redirect to="/home" />
         </Switch>
       </div>
@@ -93,12 +105,4 @@ function MainComponent() {
   );
 }
 
-// export default withRouter(
-//   connect({
-//     dishes: dishes,
-//     comments: comments,
-//     promotions: promotions,
-//     leaders: leaders,
-//   })(MainComponent)
-// );
 export default MainComponent;
