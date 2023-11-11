@@ -79,6 +79,7 @@ function MainComponent() {
             path="/aboutus"
             component={() => <AboutComponent leaders={leaders} />}
           />
+
           <Route
             exact
             path="/menu"
