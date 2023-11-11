@@ -5,8 +5,17 @@ import LoadingComponent from "./LoadingComponent";
 
 import { Link } from "react-router-dom";
 
-function DishdetailComponent({ dish, comments, dishesLoading, dishesError }) {
-  if (dishesLoading || dish == null) {
+function DishdetailComponent({
+  dish,
+  comments,
+  dishesLoading,
+  dishesError,
+  commentsLoading,
+  commentsError,
+  addComment,
+  commentsLen,
+}) {
+  if (dishesLoading || commentsLoading || dish == null) {
     return (
       <div className="container">
         <div className="row">
@@ -16,7 +25,7 @@ function DishdetailComponent({ dish, comments, dishesLoading, dishesError }) {
     );
   }
 
-  if (dishesError) {
+  if (dishesError || commentsError) {
     return (
       <div className="container">
         <div className="row">
@@ -46,7 +55,12 @@ function DishdetailComponent({ dish, comments, dishesLoading, dishesError }) {
         </div>
         <div className="col-12 col-md-5 m-1">
           <h4>Comments</h4>
-          <MenuCommentsItem comments={comments} dishId={dish.id} />
+          <MenuCommentsItem
+            commentsLen={commentsLen}
+            comments={comments}
+            dishId={dish.id}
+            addComment={addComment}
+          />
         </div>
       </div>
     </div>

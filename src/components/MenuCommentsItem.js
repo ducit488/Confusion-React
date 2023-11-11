@@ -13,7 +13,7 @@ import {
   FormFeedback,
 } from "reactstrap";
 
-function MenuCommentsItem({ comments, dishId }) {
+function MenuCommentsItem({ comments, commentsLen, dishId, addComment }) {
   return (
     <Fragment>
       <ul className="list-unstyled">
@@ -32,7 +32,11 @@ function MenuCommentsItem({ comments, dishId }) {
         ))}
       </ul>
 
-      <CommentForm dishId={dishId} />
+      <CommentForm
+        dishId={dishId}
+        addComment={addComment}
+        commentsLen={commentsLen}
+      />
     </Fragment>
   );
 }

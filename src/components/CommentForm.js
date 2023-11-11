@@ -19,11 +19,11 @@ import {
 
 import PenIcon from "../icons/PenIcon";
 
-import { addComment } from "../store";
 import { useDispatch } from "react-redux";
 import { Fragment, useState } from "react";
+import { fetchComments } from "../store";
 
-function CommentForm({ dishId }) {
+function CommentForm({ dishId, addComment, commentsLen }) {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
@@ -34,11 +34,19 @@ function CommentForm({ dishId }) {
   const maxLength = (len) => (val) => !val || val.length <= len;
   const minLength = (len) => (val) => val && val.length >= len;
 
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     toggle();
-    let data = { ...values, dishId: dishId };
+    let data = {
+      id: commentsLen,
+      dishId: dishId,
+      ...values,
+
+      date: new Date().toISOString(),
+    };
     if (!data.rating) data.rating = 3;
-    dispatch(addComment(data));
+
+    await dispatch(addComment(data));
+    dispatch(fetchComments());
   };
 
   return (

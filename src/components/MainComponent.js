@@ -14,11 +14,16 @@ import DishdetailComponent from "./DishdetailComponent";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
-import { fetchDishes } from "../store";
+import {
+  fetchDishes,
+  fetchComments,
+  fetchPromotions,
+  addComment,
+} from "../store";
 import { actions } from "react-redux-form";
 
 function MainComponent() {
-  const { dishes, comments, promotions, leaders } = useSelector((state) => {
+  const { leaders } = useSelector((state) => {
     return state.mixedDatas;
   });
 
@@ -26,14 +31,27 @@ function MainComponent() {
 
   useEffect(() => {
     dispatch(fetchDishes());
+    dispatch(fetchComments());
+    dispatch(fetchPromotions());
   }, [dispatch]);
 
   const { dishesLoading, dishesData, dishesError } = useSelector((state) => {
     return state.dishes;
   });
 
+  const { commentsLoading, commentsData, commentsError } = useSelector(
+    (state) => {
+      return state.comments;
+    }
+  );
+
+  const { promotionsLoading, promotionsData, promotionsError } = useSelector(
+    (state) => {
+      return state.promotions;
+    }
+  );
+
   const resetFeedbackForm = () => {
-    console.log(actions.reset("feedback"));
     dispatch(actions.reset("feedback"));
   };
 
@@ -49,7 +67,9 @@ function MainComponent() {
                 dish={dishesData.filter((dish) => dish.featured)[0]}
                 dishesLoading={dishesLoading}
                 dishesError={dishesError}
-                promotion={promotions.filter((promo) => promo.featured)[0]}
+                promotion={promotionsData.filter((promo) => promo.featured)[0]}
+                promotionsLoading={promotionsLoading}
+                promotionsError={promotionsError}
                 leader={leaders.filter((leader) => leader.featured)[0]}
               />
             )}
@@ -82,10 +102,14 @@ function MainComponent() {
                 }
                 dishesLoading={dishesLoading}
                 dishesError={dishesError}
-                comments={comments.filter(
+                comments={commentsData?.filter(
                   (comment) =>
                     comment.dishId === parseInt(match.params.dishId, 10)
                 )}
+                commentsLoading={commentsLoading}
+                commentsError={commentsError}
+                addComment={addComment}
+                commentsLen={commentsData.length}
               />
             )}
           />

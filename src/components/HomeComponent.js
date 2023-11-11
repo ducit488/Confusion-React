@@ -7,6 +7,8 @@ function HomeComponent({
   leader,
   dishesLoading,
   dishesError,
+  promotionsLoading,
+  promotionsError,
 }) {
   return (
     <div className="container">
@@ -19,7 +21,11 @@ function HomeComponent({
           />
         </div>
         <div className="col-12 col-md m-1">
-          <CardItem item={promotion} />
+          <CardItem
+            item={promotion}
+            promotionsLoading={promotionsLoading}
+            promotionsError={promotionsError}
+          />
         </div>
         <div className="col-12 col-md m-1">
           <CardItem item={leader} />

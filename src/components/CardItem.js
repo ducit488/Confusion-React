@@ -8,19 +8,26 @@ import {
 } from "reactstrap";
 
 import LoadingComponent from "./LoadingComponent";
+import { baseUrl } from "../shared/baseUrl";
 
-function CardItem({ item, dishesLoading, dishesError }) {
-  if (dishesLoading || item == null) {
+function CardItem({
+  item,
+  dishesLoading,
+  dishesError,
+  promotionsLoading,
+  promotionsError,
+}) {
+  if (dishesLoading || promotionsLoading || item == null) {
     return <LoadingComponent />;
   }
 
-  if (dishesError) {
+  if (dishesError || promotionsError) {
     return <h4>Error fetching data...</h4>;
   }
 
   return (
     <Card>
-      <CardImg src={item.image} alt={item.name} />
+      <CardImg src={baseUrl + item.image} alt={item.name} />
       <CardBody>
         <CardTitle>{item.name}</CardTitle>
         {item.designation ? (
