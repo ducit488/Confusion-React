@@ -43,6 +43,7 @@ function CommentForm({ dishId, addComment, commentsLen }) {
 
       date: new Date().toISOString(),
     };
+
     if (!data.rating) data.rating = 3;
 
     await dispatch(addComment(data));
