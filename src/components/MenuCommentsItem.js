@@ -12,24 +12,29 @@ import {
   Row,
   FormFeedback,
 } from "reactstrap";
+import { Fade, Stagger } from "react-animation-components";
 
 function MenuCommentsItem({ comments, commentsLen, dishId, addComment }) {
   return (
     <Fragment>
       <ul className="list-unstyled">
-        {comments.map((item) => (
-          <li key={item.id}>
-            <p>{item.comment}</p>
-            <p>
-              -- {item.author},{" "}
-              {new Intl.DateTimeFormat("en-US", {
-                year: "numeric",
-                month: "short",
-                day: "2-digit",
-              }).format(new Date(Date.parse(item.date)))}
-            </p>
-          </li>
-        ))}
+        <Stagger in>
+          {comments.map((item) => (
+            <Fade in>
+              <li key={item.id}>
+                <p>{item.comment}</p>
+                <p>
+                  -- {item.author},{" "}
+                  {new Intl.DateTimeFormat("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "2-digit",
+                  }).format(new Date(Date.parse(item.date)))}
+                </p>
+              </li>
+            </Fade>
+          ))}
+        </Stagger>
       </ul>
 
       <CommentForm
