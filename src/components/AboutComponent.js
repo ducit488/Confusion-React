@@ -8,8 +8,29 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import RenderLeader from "./RenderLeader";
+import LoadingComponent from "./LoadingComponent";
 
-function AboutComponent({ leaders }) {
+function AboutComponent({ leaders, leadersLoading, leadersError }) {
+  if (leadersLoading || leaders == null) {
+    return (
+      <div className="container">
+        <div className="row">
+          <LoadingComponent />
+        </div>
+      </div>
+    );
+  }
+
+  if (leadersError) {
+    return (
+      <div className="container">
+        <div className="row">
+          <h4>Error fetching data...</h4>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="container">
       <div className="row">

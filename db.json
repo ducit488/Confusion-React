@@ -259,5 +259,47 @@
       "featured": true,
       "description": "Featuring mouthwatering combinations with a choice of five different salads, six enticing appetizers, six main entrees and five choicest desserts. Free flowing bubbly and soft drinks. All for just $19.99 per person"
     }
+  ],
+  "feedbacks": [
+    {
+      "firstname": "dsfg",
+      "lastname": "Nguyen Sy",
+      "telnum": "6574",
+      "email": "ducit488@gmail.com",
+      "agree": false,
+      "contactType": "Tel.",
+      "message": "",
+      "id": 1
+    },
+    {
+      "firstname": "dsfg",
+      "lastname": "dfg",
+      "telnum": "6574",
+      "email": "alex@gmail.com",
+      "agree": false,
+      "contactType": "Tel.",
+      "message": "",
+      "id": 2
+    },
+    {
+      "firstname": "dsfg",
+      "lastname": "Nguyen Sy",
+      "telnum": "6574",
+      "email": "ducit488@gmail.com",
+      "agree": false,
+      "contactType": "Tel.",
+      "message": "",
+      "id": 3
+    },
+    {
+      "firstname": "dsfg",
+      "lastname": "dfg",
+      "telnum": "6574",
+      "email": "john@gmail.com",
+      "agree": false,
+      "contactType": "Tel.",
+      "message": "",
+      "id": 4
+    }
   ]
 }

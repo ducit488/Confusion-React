@@ -17,12 +17,14 @@ function CardItem({
   dishesError,
   promotionsLoading,
   promotionsError,
+  leadersLoading,
+  leadersError,
 }) {
-  if (dishesLoading || promotionsLoading || item == null) {
+  if (dishesLoading || promotionsLoading || leadersLoading || item == null) {
     return <LoadingComponent />;
   }
 
-  if (dishesError || promotionsError) {
+  if (dishesError || promotionsError || leadersError) {
     return <h4>Error fetching data...</h4>;
   }
 

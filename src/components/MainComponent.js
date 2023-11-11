@@ -19,22 +19,20 @@ import {
   fetchDishes,
   fetchComments,
   fetchPromotions,
+  fetchLeaders,
   addComment,
 } from "../store";
 import { actions } from "react-redux-form";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 function MainComponent() {
-  const { leaders } = useSelector((state) => {
-    return state.mixedDatas;
-  });
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchDishes());
     dispatch(fetchComments());
     dispatch(fetchPromotions());
+    dispatch(fetchLeaders());
   }, [dispatch]);
 
   const { dishesLoading, dishesData, dishesError } = useSelector((state) => {
@@ -52,6 +50,10 @@ function MainComponent() {
       return state.promotions;
     }
   );
+
+  const { leadersLoading, leadersData, leadersError } = useSelector((state) => {
+    return state.leaders;
+  });
 
   const resetFeedbackForm = () => {
     dispatch(actions.reset("feedback"));
@@ -77,14 +79,22 @@ function MainComponent() {
                     }
                     promotionsLoading={promotionsLoading}
                     promotionsError={promotionsError}
-                    leader={leaders.filter((leader) => leader.featured)[0]}
+                    leader={leadersData.filter((leader) => leader.featured)[0]}
+                    leadersLoading={leadersLoading}
+                    leadersError={leadersError}
                   />
                 )}
               />
               <Route
                 exact
                 path="/aboutus"
-                component={() => <AboutComponent leaders={leaders} />}
+                component={() => (
+                  <AboutComponent
+                    leaders={leadersData}
+                    leadersLoading={leadersLoading}
+                    leadersError={leadersError}
+                  />
+                )}
               />
 
               <Route

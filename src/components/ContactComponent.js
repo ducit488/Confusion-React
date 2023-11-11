@@ -15,8 +15,12 @@ import {
 import { Control, Form, Errors, actions } from "react-redux-form";
 
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addFeedback } from "../store/thunks/addFeedbacks";
 
 function ContactComponent({ resetFeedbackForm }) {
+  const dispatch = useDispatch();
+
   const required = (val) => val && val.length;
   const maxLength = (len) => (val) => !val || val.length <= len;
   const minLength = (len) => (val) => val && val.length >= len;
@@ -24,10 +28,11 @@ function ContactComponent({ resetFeedbackForm }) {
   const validEmail = (val) =>
     /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     console.log("Current State is: " + JSON.stringify(values));
-    alert("Current State is: " + JSON.stringify(values));
+    alert("Thank you for your feedback!\n" + JSON.stringify(values));
     // event.preventDefault();
+    await dispatch(addFeedback(values));
     resetFeedbackForm();
   };
 

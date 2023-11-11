@@ -3,6 +3,7 @@ import { mixedDataReducer } from "./slices/mixedDataSlice";
 import { dishesReducer } from "./slices/dishesSlice";
 import { commentsReducer } from "./slices/commentsSlice";
 import { promotionsReducer } from "./slices/promotionsSlice";
+import { leadersReducer } from "./slices/leadersSlice";
 import logger from "redux-logger";
 import { createForms } from "react-redux-form";
 import { InitialFeedback } from "../redux/forms";
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   dishes: dishesReducer,
   comments: commentsReducer,
   promotions: promotionsReducer,
+  leaders: leadersReducer,
 });
 
 const store = configureStore({
@@ -32,3 +34,4 @@ export * from "./thunks/fetchDishes";
 export * from "./thunks/addComments";
 export * from "./thunks/fetchComments";
 export * from "./thunks/fetchPromotions";
+export * from "./thunks/fetchLeaders";

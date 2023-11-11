@@ -9,6 +9,8 @@ function HomeComponent({
   dishesError,
   promotionsLoading,
   promotionsError,
+  leadersLoading,
+  leadersError,
 }) {
   return (
     <div className="container">
@@ -28,7 +30,11 @@ function HomeComponent({
           />
         </div>
         <div className="col-12 col-md m-1">
-          <CardItem item={leader} />
+          <CardItem
+            item={leader}
+            leadersLoading={leadersLoading}
+            leadersError={leadersError}
+          />
         </div>
       </div>
     </div>
